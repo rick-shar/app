@@ -1,25 +1,30 @@
 //Main file for app
+
+var program = require('commander');
 var args = process.argv;
-var presentFlags = [];
-args.forEach(function(arg){
-	if((arg === '--sum') || (arg === '--product')){
-		presentFlags.push(arg);
-	}
-});
-if(presentFlags.length !== 1) {
-	throw "incorrect number or type of flags";
-}
+
+// setup commander args
+// https://www.npmjs.com/package/commander
+
+program
+	.option('-s --sum', 'sum')
+	.option('-p --product', 'product')
+	.parse(args);
+
 var isNumber = function(x){
 	return !isNaN(parseFloat(x));
 }
 var numbers = args.filter(isNumber).map(parseFloat);
 var result;
-if(presentFlags[0] === '--sum'){
+if(!program.sum && !program.product) {
+	throw "no flag passed";
+}
+if(program.sum){
 	// do sum stuff
 	result = numbers.reduce(function(a,b){ return a + b; });
 }
 
-if(presentFlags[0] === '--product'){
+if(program.product){
 	// do product stuff
 	result = numbers.reduce(function(a,b){ return a * b; });
 	
