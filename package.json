@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/rick-shar/app/issues"
   },
-  "homepage": "https://github.com/rick-shar/app#readme"
+  "homepage": "https://github.com/rick-shar/app#readme",
+  "dependencies": {
+    "commander": "^2.9.0"
+  }
 }
